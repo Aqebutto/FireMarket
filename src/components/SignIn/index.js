@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import { compose } from "recompose";
 
-import { SignUpLink } from '../SignUp';
-import { PasswordForgetLink } from '../PasswordForget';
-import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/routes';
+import { SignUpLink } from "../SignUp";
+import { PasswordForgetLink } from "../PasswordForget";
+import { withFirebase } from "../Firebase";
+import * as ROUTES from "../../constants/routes";
 
 import {
   Grid,
@@ -14,8 +14,8 @@ import {
   Header,
   Icon,
   Message,
-  Divider,
-} from 'semantic-ui-react';
+  Divider
+} from "semantic-ui-react";
 
 const SignInPage = () => (
   <Grid centered columns={2}>
@@ -33,13 +33,13 @@ const SignInPage = () => (
 );
 
 const INITIAL_STATE = {
-  email: '',
-  password: '',
-  error: null,
+  email: "",
+  password: "",
+  error: null
 };
 
 const ERROR_CODE_ACCOUNT_EXISTS =
-  'auth/account-exists-with-different-credential';
+  "auth/account-exists-with-different-credential";
 
 const ERROR_MSG_ACCOUNT_EXISTS = `
   An account with an E-Mail address to
@@ -62,7 +62,7 @@ class SignInFormBase extends Component {
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
         this.setState({ ...INITIAL_STATE });
-        this.props.history.push(ROUTES.HOME);
+        this.props.history.push(ROUTES.LANDING);
       })
       .catch(error => {
         this.setState({ error });
@@ -78,7 +78,7 @@ class SignInFormBase extends Component {
   render() {
     const { email, password, error } = this.state;
 
-    const isInvalid = password === '' || email === '';
+    const isInvalid = password === "" || email === "";
 
     return (
       <div>
@@ -134,7 +134,7 @@ class SignInGoogleBase extends Component {
         return this.props.firebase.user(socialAuthUser.user.uid).set({
           username: socialAuthUser.user.displayName,
           email: socialAuthUser.user.email,
-          roles: [],
+          roles: []
         });
       })
       .then(() => {
@@ -186,7 +186,7 @@ class SignInFacebookBase extends Component {
         return this.props.firebase.user(socialAuthUser.user.uid).set({
           username: socialAuthUser.additionalUserInfo.profile.name,
           email: socialAuthUser.additionalUserInfo.profile.email,
-          roles: [],
+          roles: []
         });
       })
       .then(() => {
@@ -238,7 +238,7 @@ class SignInTwitterBase extends Component {
         return this.props.firebase.user(socialAuthUser.user.uid).set({
           username: socialAuthUser.additionalUserInfo.profile.name,
           email: socialAuthUser.additionalUserInfo.profile.email,
-          roles: [],
+          roles: []
         });
       })
       .then(() => {
@@ -277,22 +277,22 @@ class SignInTwitterBase extends Component {
 
 const SignInForm = compose(
   withRouter,
-  withFirebase,
+  withFirebase
 )(SignInFormBase);
 
 const SignInGoogle = compose(
   withRouter,
-  withFirebase,
+  withFirebase
 )(SignInGoogleBase);
 
 const SignInFacebook = compose(
   withRouter,
-  withFirebase,
+  withFirebase
 )(SignInFacebookBase);
 
 const SignInTwitter = compose(
   withRouter,
-  withFirebase,
+  withFirebase
 )(SignInTwitterBase);
 
 export default SignInPage;

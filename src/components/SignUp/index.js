@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
 
-import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/routes';
-import * as ROLES from '../../constants/roles';
+import { withFirebase } from "../Firebase";
+import * as ROUTES from "../../constants/routes";
+import * as ROLES from "../../constants/roles";
 import {
   Form,
   Button,
   Grid,
   Header,
   Message,
-  Checkbox,
-} from 'semantic-ui-react';
+  Checkbox
+} from "semantic-ui-react";
 
 const SignUpPage = () => (
   <Grid centered columns={2}>
@@ -25,15 +25,15 @@ const SignUpPage = () => (
 );
 
 const INITIAL_STATE = {
-  username: '',
-  email: '',
-  passwordOne: '',
-  passwordTwo: '',
+  username: "",
+  email: "",
+  passwordOne: "",
+  passwordTwo: "",
   isAdmin: false,
-  error: null,
+  error: null
 };
 
-const ERROR_CODE_ACCOUNT_EXISTS = 'auth/email-already-in-use';
+const ERROR_CODE_ACCOUNT_EXISTS = "auth/email-already-in-use";
 
 const ERROR_MSG_ACCOUNT_EXISTS = `
   An account with this E-Mail address already exists.
@@ -66,9 +66,9 @@ class SignUpFormBase extends Component {
           {
             username,
             email,
-            roles,
+            roles
           },
-          { merge: true },
+          { merge: true }
         );
       })
       .then(() => {
@@ -76,7 +76,7 @@ class SignUpFormBase extends Component {
       })
       .then(() => {
         this.setState({ ...INITIAL_STATE });
-        return this.props.history.push(ROUTES.HOME);
+        return this.props.history.push(ROUTES.LANDING);
       })
       .catch(error => {
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
@@ -104,14 +104,14 @@ class SignUpFormBase extends Component {
       passwordOne,
       passwordTwo,
       isAdmin,
-      error,
+      error
     } = this.state;
 
     const isInvalid =
       passwordOne !== passwordTwo ||
-      passwordOne === '' ||
-      email === '' ||
-      username === '';
+      passwordOne === "" ||
+      email === "" ||
+      username === "";
 
     return (
       <div>

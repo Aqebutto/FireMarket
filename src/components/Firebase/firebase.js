@@ -2,8 +2,6 @@ import app from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
-import * as ROUTES from "../../constants/routes";
-
 const config = {
   apiKey: "AIzaSyDwRjedA_vwIvgKbQPAWSab3e7Z6YMN8r0",
   authDomain: "rf-web-shop.firebaseapp.com",
@@ -25,9 +23,6 @@ class Firebase {
 
     this.auth = app.auth();
     this.firestore = app.firestore();
-    this.firestore.settings({
-      timestampsInSnapshots: true
-    });
 
     /* Social Sign In Method Provider */
 
