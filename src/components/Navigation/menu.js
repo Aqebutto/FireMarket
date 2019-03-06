@@ -10,10 +10,11 @@ import { Link, withRouter } from "react-router-dom";
 import CartIcon from "@material-ui/icons/ShoppingCart";
 import Badge from "@material-ui/core/Badge";
 import { AuthUserContext } from "../Session";
+import * as ROUTES from "../../constants/routes";
 
 const isActive = (history, path) => {
-  if (history.location.pathname == path) return { color: "##e29e0b" };
-  else return { color: "#4286f4" };
+  if (history.location.pathname == path) return { color: "#fc7223" };
+  else return { color: "#fcd471" };
 };
 const isPartActive = (history, path) => {
   if (history.location.pathname.includes(path)) return { color: "#bef67a" };
@@ -47,7 +48,14 @@ const NavigationNonAuth = withRouter(({ history }) => (
         </Link>
       </div>
       <div style={{ position: "absolute", right: "10px" }}>
-        <span style={{ float: "right" }} />
+        <span style={{ float: "right" }}>
+          <Link to={ROUTES.SIGN_UP}>
+            <Button style={isActive(history, ROUTES.SIGN_UP)}>Sign up</Button>
+          </Link>
+          <Link to={ROUTES.SIGN_IN}>
+            <Button style={isActive(history, ROUTES.SIGN_IN)}>Sign In</Button>
+          </Link>
+        </span>
       </div>
     </Toolbar>
   </AppBar>
