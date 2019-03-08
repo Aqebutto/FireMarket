@@ -104,6 +104,44 @@ class Firebase {
   user = uid => this.firestore.doc(`users/${uid}`);
 
   users = () => this.firestore.collection("users");
+
+  // Product API
+
+  products = () => this.firestore.collection("products").get();
+
+  listCategories = () => this.firestore.collection("productsCategories").get();
+
+  list = params => this.firestore.doc(`products/${params}`).get();
+
+  listLatest = () => this.firestore.collection("productsLatest").get();
+
+  create = (params, credentials, product) =>
+    this.firestore.doc(`productsBy/${params.shopId}`).set({
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + credentials.t
+      },
+      body: product
+    });
+
+  read = params => this.firestore.doc(`products/${params.productId}`).get();
+
+  update = (params, credentials, product) =>
+    this.firestore.doc(`product/${params.shopId}/${params.productId}`).update({
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + credentials.t
+      },
+      body: product
+    });
+
+  remove = (params, credentials) =>
+    this.firestore.doc(`product/${params.shopId}/${params.productId}`).delete();
+
+  listByShop = params => this.firestore.doc(`product/${params.shopId}`).get();
+
+  listRelated = params =>
+    this.firestore.doc(`product/related/${params.productId}`).get();
 }
 
 export default Firebase;

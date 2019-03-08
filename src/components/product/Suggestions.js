@@ -10,6 +10,7 @@ import ViewIcon from "@material-ui/icons/Visibility";
 import Icon from "@material-ui/core/Icon";
 import Divider from "@material-ui/core/Divider";
 import Card, { CardContent, CardMedia } from "@material-ui/core/Card";
+
 import AddToCart from "./../cart/AddToCart";
 
 const styles = theme => ({

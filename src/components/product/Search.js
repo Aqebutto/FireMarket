@@ -7,7 +7,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import SearchIcon from "@material-ui/icons/Search";
-import { list } from "./api-product.js";
+
+import { withFirebase } from "../Firebase";
 import Products from "./Products";
 
 const styles = theme => ({
@@ -54,16 +55,21 @@ class Search extends Component {
   };
   search = () => {
     if (this.state.search) {
-      list({
-        search: this.state.search || undefined,
-        category: this.state.category
-      }).then(data => {
-        if (data.error) {
-          console.log(data.error);
-        } else {
-          this.setState({ results: data, searched: true });
-        }
-      });
+      this.props.firebase
+        .list({
+          search: this.state.search || undefined,
+          category: this.state.category
+        })
+        .then(docSnapshot => {
+          if (docSnapshot.error) {
+            console.log(docSnapshot.error);
+          } else {
+            console.log(docSnapshot);
+          }
+          /* 
+            this.setState({ results: data, searched: true }); 
+          }*/
+        });
     }
   };
   enterKey = event => {
@@ -130,4 +136,4 @@ Search.propTypes = {
   categories: PropTypes.array.isRequired
 };
 
-export default withStyles(styles)(Search);
+export default withFirebase(withStyles(styles)(Search));

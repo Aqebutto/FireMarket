@@ -9,9 +9,9 @@ import Button from "@material-ui/core/Button";
 import { Link, withRouter } from "react-router-dom";
 /* import CartIcon from "@material-ui/icons/ShoppingCart";
 import Badge from "@material-ui/core/Badge"; */
-import { AuthUserContext } from "../Session";
-import * as ROUTES from "../../constants/routes";
-import SignOutButton from "../SignOut";
+import { AuthUserContext } from "../../Session";
+import * as ROUTES from "../../../constants/routes";
+import SignOutButton from "../../SignOut";
 
 const isActive = (history, path) => {
   if (history.location.pathname === path) return { color: "#fc7223" };

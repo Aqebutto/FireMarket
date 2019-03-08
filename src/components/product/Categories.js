@@ -6,8 +6,10 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import GridList, { GridListTile } from "@material-ui/core/GridList";
 import Icon from "@material-ui/core/Icon";
+
 import { list } from "./api-product.js";
 import Products from "./Products";
+import { withFirebase } from "../Firebase";
 
 const styles = theme => ({
   root: {
@@ -59,28 +61,32 @@ class Categories extends Component {
   };
   componentWillReceiveProps = props => {
     this.setState({ selected: props.categories[0] });
-    list({
-      category: props.categories[0]
-    }).then(data => {
-      if (data.error) {
-        console.log(data.error);
-      } else {
-        this.setState({ products: data });
-      }
-    });
+    this.props.firebase
+      .list({
+        category: props.categories[0]
+      })
+      .then(data => {
+        if (data.error) {
+          console.log(data.error);
+        } else {
+          this.setState({ products: data });
+        }
+      });
   };
 
   listbyCategory = category => event => {
     this.setState({ selected: category });
-    list({
-      category: category
-    }).then(data => {
-      if (data.error) {
-        console.log(data.error);
-      } else {
-        this.setState({ products: data });
-      }
-    });
+    this.props.firebase
+      .list({
+        category: category
+      })
+      .then(data => {
+        if (data.error) {
+          console.log(data.error);
+        } else {
+          this.setState({ products: data });
+        }
+      });
   };
 
   render() {
@@ -130,4 +136,4 @@ Categories.propTypes = {
   categories: PropTypes.array.isRequired
 };
 
-export default withStyles(styles)(Categories);
+export default withFirebase(withStyles(styles)(Categories));
