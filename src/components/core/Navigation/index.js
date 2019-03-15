@@ -37,13 +37,16 @@ const NavigationAuth = withRouter(({ history }) => (
         Fire Market
       </Typography>
       <div>
-        <Link to="/">
+        <Link to={ROUTES.HOME}>
           <IconButton aria-label="Home" style={isActive(history, "/")}>
             <HomeIcon />
           </IconButton>
         </Link>
         <Link to="/shops/all">
           <Button style={isActive(history, "/shops/all")}>Shop</Button>
+        </Link>
+        <Link to={ROUTES.CART}>
+          <Button style={isActive(history, "/cart")}>Cart</Button>
         </Link>
       </div>
       <div style={{ position: "absolute", right: "10px" }}>
@@ -69,6 +72,9 @@ const NavigationNonAuth = withRouter(({ history }) => (
         </Link>
         <Link to="/shops/all">
           <Button style={isActive(history, "/shops/all")}>Shop</Button>
+        </Link>
+        <Link to={ROUTES.CART}>
+          <Button style={isActive(history, "/cart")}>Cart</Button>
         </Link>
       </div>
       <div style={{ position: "absolute", right: "10px" }}>

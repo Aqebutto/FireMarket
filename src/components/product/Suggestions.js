@@ -9,7 +9,9 @@ import { Link } from "react-router-dom";
 import ViewIcon from "@material-ui/icons/Visibility";
 import Icon from "@material-ui/core/Icon";
 import Divider from "@material-ui/core/Divider";
-import Card, { CardContent, CardMedia } from "@material-ui/core/Card";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/Card";
+import CardMedia from "@material-ui/core/Card";
 
 import AddToCart from "./../cart/AddToCart";
 
@@ -96,7 +98,7 @@ class Suggestions extends Component {
                   />
                   <div className={classes.details}>
                     <CardContent className={classes.content}>
-                      <Link to={"/product/" + item._id}>
+                      <Link to={"/product/" + item.id}>
                         <Typography
                           type="title"
                           component="h3"
@@ -106,7 +108,7 @@ class Suggestions extends Component {
                           {item.name}
                         </Typography>
                       </Link>
-                      <Link to={"/shops/" + item.shop._id}>
+                      <Link to={"/shops/" + item.shop.id}>
                         <Typography
                           type="subheading"
                           className={classes.subheading}
@@ -129,7 +131,7 @@ class Suggestions extends Component {
                         $ {item.price}
                       </Typography>
                       <span className={classes.actions}>
-                        <Link to={"/product/" + item._id}>
+                        <Link to={"/product/" + item.id}>
                           <IconButton color="secondary" dense="dense">
                             <ViewIcon className={classes.iconButton} />
                           </IconButton>

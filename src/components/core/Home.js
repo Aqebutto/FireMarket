@@ -29,6 +29,7 @@ class Home extends Component {
         const data = querySnapshot.docs.map(snap => {
           return snap.data();
         });
+        console.log("Products", data);
         this.setState({ suggestions: data });
       }
     });
@@ -39,7 +40,7 @@ class Home extends Component {
         const data = querySnapshot.docs.map(snap => {
           return snap.data().name;
         });
-        console.log(data);
+        console.log("Catagories: ", data);
         this.setState({ categories: data });
       }
     });
@@ -51,13 +52,13 @@ class Home extends Component {
         <Grid container spacing={24}>
           <Grid item xs={8} sm={8}>
             <Search categories={this.state.categories} />
-            {/*             <Categories categories={this.state.categories} /> */}
+            <Categories categories={this.state.categories} />
           </Grid>
           <Grid item xs={4} sm={4}>
-            {/*             <Suggestions
+            <Suggestions
               products={this.state.suggestions}
               title={this.state.suggestionTitle}
-            /> */}
+            />
           </Grid>
         </Grid>
       </div>

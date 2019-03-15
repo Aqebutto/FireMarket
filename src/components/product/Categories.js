@@ -4,10 +4,10 @@ import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
-import GridList, { GridListTile } from "@material-ui/core/GridList";
+import GridList from "@material-ui/core/GridList";
+import GridListTile from "@material-ui/core/GridList";
 import Icon from "@material-ui/core/Icon";
 
-import { list } from "./api-product.js";
 import Products from "./Products";
 import { withFirebase } from "../Firebase";
 
